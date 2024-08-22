@@ -10,9 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
+        $hitunguser = User::count();
         $user = User::all();
         return response()->json([
             'Data' => 'Data User',
+            'Jumlah User' => $hitunguser,
             'Users' => $user
         ]);
     }
