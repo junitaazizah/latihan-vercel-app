@@ -77,7 +77,7 @@
             <input type="text" id="email-search" class="form-control" placeholder="Masukan Email....">
             <ul id="email-list" class="list-group mt-2" style="display: none;"></ul>
             <p id="loading-message">Sedang mencari....</p>
-            <p id="no-results">Email Tidak Di temukan.</p>
+            <p id="no-results">Email Tidak Di temukan..</p>
         </div>
 
         <div id="selected-email" class="mt-3" style="display: none;">
