@@ -18,4 +18,24 @@ class UserController extends Controller
             'Users' => $user
         ]);
     }
+    public function findemail(Request $request)
+    {
+        $query = $request->get('query');
+        $sensitiveNames = ['@'];
+        foreach ($sensitiveNames as $name) {
+            if (stripos($query, $name) !== false) {
+                return response()->json(['Data' => 'Private.'], 403);
+            }
+        }
+        if (!$query) {
+            return response()->json([]);
+        }
+        $data = User::where('email', 'LIKE', "%{$query}%")
+            ->get(['email']);
+        return response()->json($data);
+    }
+    public function find()
+    {
+        return view('users.index');
+    }
 }
