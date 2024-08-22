@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             background-color: #f8f9fa;
             font-family: 'Raleway', sans-serif;
         }
+
         .container {
             max-width: 600px;
             margin-top: 50px;
@@ -18,28 +20,34 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             font-weight: 600;
             color: #343a40;
             text-align: center;
             margin-bottom: 20px;
         }
+
         .form-control {
             border-radius: 25px;
             padding: 10px 20px;
             font-size: 16px;
         }
+
         #email-list {
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .list-group-item {
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
+
         .list-group-item:hover {
             background-color: #f1f1f1;
         }
+
         #selected-email {
             background-color: #e9ecef;
             padding: 15px;
@@ -47,21 +55,25 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         #selected-email h4 {
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 10px;
         }
+
         #email-details {
             font-size: 16px;
             color: #495057;
         }
+
         #loading-message {
             text-align: center;
             color: #6c757d;
             margin-top: 10px;
             display: none;
         }
+
         #no-results {
             text-align: center;
             color: #dc3545;
@@ -70,8 +82,10 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
+        <img src="{{ asset('logo.jpg') }}">
         <h2>Search Email</h2>
         <div class="form-group">
             <input type="text" id="email-search" class="form-control" placeholder="Masukan Email....">
@@ -102,7 +116,9 @@
                     $.ajax({
                         url: '{{ route("find-json") }}',
                         type: 'GET',
-                        data: {'query': query},
+                        data: {
+                            'query': query
+                        },
                         success: function(data) {
                             $('#loading-message').hide();
 
@@ -118,7 +134,7 @@
                         },
                         error: function(xhr) {
                             $('#loading-message').hide();
-                            if(xhr.status === 403) {
+                            if (xhr.status === 403) {
                                 $('#email-list').empty().append('<li class="list-group-item text-danger">' + xhr.responseJSON.Data + '</li>').show();
                             }
                         }
@@ -139,4 +155,5 @@
         });
     </script>
 </body>
+
 </html>
